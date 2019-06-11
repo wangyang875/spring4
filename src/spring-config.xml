@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--配置bean，class是bean的全类名，反射的方式，在类的定义里面必须要有一个默认的无参的构造器，通过id获取bean对象-->
+    <bean id="hello" class="beans.Hello">
+        <property name="name2" value="Spring"></property>
+    </bean>
+    <!--通过构造方法配置bean的属性,可以指定参数的位置和参数的类型以区分重载的构造器-->
+    <bean id="car" class="beans.Car">
+        <constructor-arg value="aodi" index="0"></constructor-arg>
+        <constructor-arg value="yiqi" index="1"></constructor-arg>
+        <constructor-arg value="1000" index="2"></constructor-arg>
+    </bean>
+    <bean id="car1" class="beans.Car">
+        <constructor-arg value="aodi" ></constructor-arg>
+        <!--字面包含特殊字符，可以用<![CDATA[<。。。。>]]>包含起来-->
+        <constructor-arg ><value><![CDATA[<yiqi..>]]></value></constructor-arg>
+        <constructor-arg value="10000" type="double"></constructor-arg>
+    </bean>
+    <bean id="person" class="beans.Person">
+        <property name="name" value="ming"></property>
+        <property name="age" value="12"></property>
+        <!--配置集合属性-->
+        <property name="cars">
+            <list>
+                <ref bean="car"></ref>
+                <ref bean="car1"></ref>
+            </list>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<bean id="address" class="autowire.Address">
+    <property name="city" value="beijing"></property>
+    <property name="street" value="donglu"></property>
+</bean>
+    <bean id="car" class="autowire.Car">
+        <property name="brand" value="bench"></property>
+        <property name="place" value="dongfeng"></property>
+    </bean>
+    <!--<bean id="person" class="autowire.Person" p:name="mike" p:address-ref="address" p:car-ref="car"></bean> 这是手动装配-->
+    <bean id="person" class="autowire.Person" p:name="jack" autowire="byName"></bean>
+    <!--这是自动装配，自动根据setter方法的名字和id来匹配，方式有byName和byType-->
+
+</beans>
